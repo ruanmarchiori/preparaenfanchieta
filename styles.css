@@ -1,0 +1,424 @@
+/* Preparatório de Enfermagem · página de vendas. Mobile-first.
+   Âmbar só nos botões de compra e números de destaque; coral só nos prazos. */
+:root {
+  --escuro: #0F2E2B;
+  --card: #163F3B;
+  --borda: #2F5A55;
+  --creme: #F5F1E8;
+  --creme-2: #EDE7DA;
+  --ambar: #F4B740;
+  --ambar-hover: #FFC94D;
+  --verde: #22C55E;
+  --verde-claro: #15803D;   /* verde dos checks em fundo claro (contraste) */
+  --coral: #E8553D;
+  --texto-2: #A8C6BF;
+  --texto-claro-2: #3D5A56; /* texto secundário em fundo creme */
+  --raio: 16px;
+  --sombra: 0 18px 40px -22px rgba(4, 20, 18, .55);
+  --barra-topo: 40px;
+  --lado: 16px;             /* margem lateral */
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: #fff;
+  background: var(--escuro);
+  padding-top: var(--barra-topo);
+  overflow-wrap: break-word;
+}
+h1, h2, h3 { font-family: 'Barlow Condensed', 'Inter', sans-serif; font-weight: 800; line-height: 1.05; letter-spacing: .005em; margin: 0; }
+h2 { font-size: clamp(1.9rem, 7vw, 2.8rem); margin-bottom: 20px; }
+h3 { font-size: 1.4rem; font-weight: 700; }
+p { margin: 0; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--ambar); outline-offset: 3px; border-radius: 6px; }
+.clara :focus-visible, .creme-2 :focus-visible { outline-color: var(--escuro); }
+.hidden { display: none !important; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.pular { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--ambar); color: var(--escuro); padding: 12px 16px; border-radius: 10px; font-weight: 700; }
+.pular:focus { top: calc(var(--barra-topo) + 8px); }
+
+.caixa { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 var(--lado); }
+.estreita { max-width: 800px; }
+.centro { text-align: center; }
+.secao { padding: 44px 0; }
+.escura { background: var(--escuro); color: #fff; }
+.clara { background: var(--creme); color: var(--escuro); }
+.creme-2 { background: var(--creme-2); color: var(--escuro); }
+.destaque { color: var(--ambar); }
+.selo { display: inline-block; font-size: .8rem; font-weight: 600; letter-spacing: .02em; color: var(--texto-2); border: 1px solid var(--borda); background: var(--card); padding: 6px 12px; border-radius: 99px; margin-bottom: 14px; }
+
+/* ===== Barra do topo ===== */
+.barra-topo {
+  position: fixed; inset: 0 0 auto 0; z-index: 50; min-height: var(--barra-topo);
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0 8px; padding: 6px 12px;
+  background: #0A2220; border-bottom: 1px solid var(--borda); color: var(--texto-2); font-size: .85rem; text-align: center;
+}
+.barra-topo strong { color: #fff; font-weight: 700; }
+#contador { color: var(--ambar); font-variant-numeric: tabular-nums; }
+.so-desktop { display: none; }
+
+/* ===== Botões de compra ===== */
+.botao {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 14px 24px; border-radius: 14px;
+  background: var(--ambar); color: var(--escuro); text-decoration: none;
+  font-weight: 700; font-size: 1.05rem; line-height: 1.2; text-align: center;
+  box-shadow: 0 10px 24px -12px rgba(244, 183, 64, .7);
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.botao:hover { background: var(--ambar-hover); transform: translateY(-2px); box-shadow: 0 16px 30px -14px rgba(244, 183, 64, .85); }
+.botao:active { transform: translateY(0); }
+.botao svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.botao-grande { width: 100%; font-size: 1.12rem; min-height: 56px; }
+.botao-gigante { width: 100%; font-size: 1.2rem; min-height: 60px; padding: 16px 24px; }
+.sem-quebra { white-space: nowrap; }
+.micro { margin-top: 10px; font-size: .85rem; color: var(--texto-2); }
+.micro-escuro { color: var(--texto-claro-2); }
+
+/* ===== Hero ===== */
+.hero { padding: 28px 0 40px; background:
+  radial-gradient(120% 70% at 100% 0%, rgba(34, 197, 94, .12), transparent 60%),
+  radial-gradient(90% 60% at 0% 100%, rgba(244, 183, 64, .10), transparent 60%), var(--escuro); }
+.hero-grade { display: grid; gap: 28px; }
+.hero h1 { font-size: clamp(2.2rem, 10vw, 3.9rem); margin-bottom: 14px; }
+.sub { color: #DCEAE6; font-size: 1.05rem; margin-bottom: 22px; }
+.sub strong { color: #fff; }
+
+/* Resumo ao lado do título (só em telas largas; no celular, os números logo abaixo cumprem o papel) */
+.hero-resumo { display: none; background: var(--card); border: 1px solid var(--borda); border-radius: 22px; padding: 26px; box-shadow: var(--sombra); }
+.hero-resumo-titulo { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--texto-2); margin-bottom: 14px; }
+.hero-resumo ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.hero-resumo li { display: flex; align-items: baseline; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--borda); }
+.hero-resumo li:last-child { border-bottom: 0; padding-bottom: 0; }
+.hero-resumo strong { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.4rem; line-height: 1; color: var(--ambar); min-width: 128px; white-space: nowrap; }
+.hero-resumo span { color: #DCEAE6; }
+.hero-resumo-equipe { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--borda); font-size: .9rem; color: var(--texto-2); }
+
+/* ===== Números ===== */
+.numeros { background: var(--card); border-top: 1px solid var(--borda); border-bottom: 1px solid var(--borda); padding: 24px 0; }
+.numeros-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.numero { padding: 14px 12px; border-radius: 14px; background: var(--escuro); border: 1px solid var(--borda); }
+.numero strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: clamp(1.55rem, 7vw, 2.3rem); line-height: 1; color: var(--ambar); margin-bottom: 4px; }
+.numero > span { font-size: .85rem; color: var(--texto-2); display: block; }
+
+/* ===== Dor ===== */
+.lista-dor { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 10px; }
+.lista-dor li { display: flex; gap: 12px; align-items: flex-start; background: #fff; border-radius: 14px; padding: 14px; font-weight: 500; box-shadow: 0 6px 18px -14px rgba(15, 46, 43, .5); }
+.icone-x { flex: 0 0 26px; height: 26px; border-radius: 50%; background: #FBE3DE; position: relative; }
+.icone-x::before, .icone-x::after { content: ''; position: absolute; left: 6px; top: 12px; width: 14px; height: 2.5px; border-radius: 2px; background: #B83A24; transform: rotate(45deg); }
+.icone-x::after { transform: rotate(-45deg); }
+.agitacao { font-size: 1.12rem; font-weight: 700; line-height: 1.45; border-left: 5px solid var(--escuro); padding: 4px 0 4px 16px; }
+.agitacao-escura { border-left-color: var(--coral); color: #fff; margin-top: 24px; }
+
+/* ===== Cards ===== */
+.cards-3 { display: grid; gap: 12px; }
+.card { background: var(--card); border: 1px solid var(--borda); border-radius: var(--raio); padding: 20px; }
+.card h3 { margin: 12px 0 6px; }
+.card p { color: var(--texto-2); }
+.card-icone { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(34, 197, 94, .14); }
+.card-icone svg { width: 24px; height: 24px; fill: none; stroke: var(--verde); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ===== Aulas ===== */
+.aulas { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.aula { display: flex; gap: 14px; background: #fff; border-radius: var(--raio); padding: 16px; box-shadow: 0 8px 22px -16px rgba(15, 46, 43, .5); }
+.aula-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; line-height: 1; color: var(--escuro); background: var(--creme); border-radius: 10px; padding: 7px 9px; height: fit-content; }
+.aula h3 { margin-bottom: 4px; }
+.aula p { color: var(--texto-claro-2); font-size: .95rem; }
+.selo-claro { margin-top: 18px; display: inline-block; font-size: .88rem; font-weight: 600; background: var(--escuro); color: var(--creme); padding: 8px 14px; border-radius: 99px; }
+
+/* ===== Equipe ===== */
+.equipe-intro { color: #DCEAE6; font-size: 1.05rem; margin-bottom: 22px; }
+.professora { background: var(--card); border: 1px solid var(--borda); border-left: 5px solid var(--ambar); border-radius: var(--raio); padding: 22px 20px; margin-bottom: 14px; }
+.professora-papel { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ambar); margin-bottom: 6px; }
+.professora h3 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
+.selos { list-style: none; padding: 0; margin: 14px 0 18px; display: flex; flex-wrap: wrap; gap: 8px; }
+.selos li { background: rgba(244, 183, 64, .14); border: 1px solid rgba(244, 183, 64, .45); color: #FFE2A6; font-weight: 700; font-size: .85rem; padding: 6px 12px; border-radius: 99px; }
+.rotulo { font-weight: 700; color: var(--texto-2); margin-bottom: 6px; }
+.especialidades { margin: 0 0 18px; padding-left: 20px; display: grid; gap: 4px; }
+.citacao { margin: 0; padding: 16px 18px; border-radius: 12px; background: var(--escuro); border: 1px solid var(--borda); font-size: 1.05rem; font-style: italic; line-height: 1.5; }
+.equipe-demais { border: 1px dashed var(--borda); border-radius: var(--raio); padding: 16px 20px; margin-bottom: 22px; color: #DCEAE6; }
+
+/* ===== Depoimentos ===== */
+.depoimentos { display: grid; gap: 12px; }
+.depo { margin: 0; background: #fff; border-radius: var(--raio); padding: 20px; }
+.depo blockquote { margin: 0 0 10px; }
+.depo figcaption { font-weight: 700; color: var(--texto-claro-2); }
+
+/* ===== Pilha de valor ===== */
+.pilha { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 10px; }
+.pilha li { display: flex; gap: 12px; align-items: flex-start; background: var(--card); border: 1px solid var(--borda); border-radius: 14px; padding: 14px 16px; font-size: 1.02rem; }
+.check { flex: 0 0 26px; height: 26px; border-radius: 50%; background: var(--verde); position: relative; }
+.check::after { content: ''; position: absolute; left: 9px; top: 5px; width: 7px; height: 13px; border: solid var(--escuro); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+.total-questoes { font-size: 1.2rem; text-align: center; margin-bottom: 20px; }
+.total-questoes strong { font-family: 'Barlow Condensed', sans-serif; font-size: 2.4rem; color: var(--ambar); display: block; line-height: 1; }
+
+/* ===== Investimento ===== */
+.investimento { background: linear-gradient(180deg, var(--creme) 0%, #FBF3DD 100%); }
+.preco-grade { display: grid; gap: 16px; }
+.preco-card { background: #fff; border: 3px solid var(--escuro); border-radius: 22px; padding: 22px 18px; text-align: center; box-shadow: var(--sombra); }
+.ancora { font-size: 1rem; margin-bottom: 14px; }
+.ancora s { color: #8B4A3F; text-decoration-thickness: 2px; }
+.voce-paga { font-weight: 600; color: var(--texto-claro-2); }
+.preco { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; line-height: .9; color: var(--escuro); font-size: clamp(5rem, 25vw, 7.5rem); margin: 4px 0 8px; }
+.preco .moeda { font-size: .38em; vertical-align: top; margin-right: 4px; position: relative; top: .25em; }
+.parcelas { font-weight: 600; margin-bottom: 16px; }
+.argumentos { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.argumentos li { background: #fff; border-left: 5px solid var(--ambar); border-radius: 12px; padding: 14px 16px; }
+
+/* ===== Comparativo ===== */
+.comparativo { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .97rem; }
+.comparativo th, .comparativo td { padding: 14px 16px; text-align: left; vertical-align: middle; }
+.comparativo thead th { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; letter-spacing: .01em; }
+.comparativo thead .col-item { color: var(--texto-claro-2); padding-left: 4px; }
+.comparativo thead .col-sozinho { background: #DCD4C3; color: var(--escuro); text-align: center; border-radius: 14px 0 0 0; }
+.comparativo thead .col-prep { background: var(--escuro); color: #fff; border-radius: 0 14px 0 0; position: relative; }
+.selo-recomendado { display: block; width: fit-content; margin-bottom: 4px; font-family: 'Inter', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--ambar); color: var(--escuro); padding: 3px 8px; border-radius: 99px; }
+.comparativo tbody th { background: #fff; font-weight: 600; color: var(--escuro); border-top: 1px solid #E8E1D2; }
+.comparativo tbody tr:first-child th { border-top-left-radius: 14px; }
+.comparativo tbody tr:last-child th { border-bottom-left-radius: 14px; }
+.comparativo tbody .col-sozinho { background: #F7F3EA; color: #8B4A3F; font-weight: 600; text-align: center; border-top: 1px solid #E8E1D2; white-space: nowrap; }
+.comparativo tbody .col-prep { background: #EAF6EE; color: var(--escuro); font-weight: 700; border-top: 1px solid #D5EBDC; }
+.comparativo tbody tr:last-child .col-prep { border-bottom-right-radius: 14px; }
+.cel { display: inline-flex; align-items: flex-start; gap: 8px; text-align: left; }
+.marca { display: inline-block; width: 22px; height: 22px; border-radius: 50%; position: relative; flex: 0 0 22px; margin-top: 1px; }
+.marca.nao { background: #FBE3DE; }
+.marca.nao::before, .marca.nao::after { content: ''; position: absolute; left: 5px; top: 10px; width: 12px; height: 2.2px; border-radius: 2px; background: #B83A24; transform: rotate(45deg); }
+.marca.nao::after { transform: rotate(-45deg); }
+.marca.sim { background: var(--verde-claro); }
+.marca.sim::after { content: ''; position: absolute; left: 8px; top: 4px; width: 5px; height: 10px; border: solid #fff; border-width: 0 2.4px 2.4px 0; transform: rotate(45deg); }
+
+/* No celular, cada linha vira um bloco: o item em cima e as duas respostas lado a lado */
+@media (max-width: 599px) {
+  .comparativo, .comparativo tbody, .comparativo tr, .comparativo th, .comparativo td { display: block; }
+  .comparativo thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .comparativo tbody { display: grid; gap: 10px; }
+  .comparativo tbody tr { display: grid; grid-template-columns: 1fr 1.6fr; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 18px -14px rgba(15, 46, 43, .5); }
+  .comparativo tbody th { grid-column: 1 / -1; border-top: 0; border-radius: 0 !important; padding: 12px 14px; font-size: 1rem; }
+  .comparativo tbody td { border-top: 0; padding: 10px 14px 12px; font-size: .92rem; text-align: left; white-space: normal; border-radius: 0 !important; }
+  .comparativo tbody td::before { content: attr(data-rotulo); display: block; font-size: .72rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--texto-claro-2); margin-bottom: 4px; }
+  .comparativo tbody .col-sozinho { text-align: left; }
+}
+
+/* ===== Linha do tempo ===== */
+.linha-tempo { list-style: none; margin: 0; padding: 0 0 0 26px; position: relative; display: grid; gap: 18px; }
+.linha-tempo::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 3px; border-radius: 3px; background: var(--borda); }
+.linha-tempo li { position: relative; }
+.linha-tempo li::before { content: ''; position: absolute; left: -26px; top: 6px; width: 17px; height: 17px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 4px var(--escuro); }
+.linha-tempo .data { display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2rem; line-height: 1; color: var(--coral); }
+.linha-tempo span { color: #DCEAE6; }
+.vagas { margin-top: 14px; font-weight: 700; color: var(--texto-2); }
+
+/* ===== Quiz ===== */
+.intro-quiz { margin: -8px 0 18px; color: var(--texto-claro-2); }
+.quiz { background: #fff; border-radius: 20px; padding: 18px; box-shadow: var(--sombra); }
+.quiz-progresso { font-size: .85rem; font-weight: 700; color: var(--texto-claro-2); margin-bottom: 6px; }
+.quiz-pergunta { font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
+.quiz-pergunta:focus { outline: none; }
+.quiz-opcoes { display: grid; gap: 8px; }
+.quiz-opcao {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 52px; padding: 10px 12px;
+  border: 2px solid #DCD4C3; border-radius: 12px; background: var(--creme); color: var(--escuro);
+  font: inherit; font-weight: 600; text-align: left; cursor: pointer; transition: border-color .15s, background .15s;
+}
+.quiz-opcao:hover:not(:disabled) { border-color: var(--escuro); }
+.quiz-opcao:disabled { cursor: default; }
+.quiz-letra { flex: 0 0 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; background: #fff; font-weight: 800; }
+.quiz-opcao.certa { border-color: var(--verde-claro); background: #E3F6E8; }
+.quiz-opcao.errada { border-color: #B83A24; background: #FBE3DE; }
+.quiz-feedback { margin-top: 12px; padding: 12px 14px; border-radius: 12px; font-weight: 500; }
+.quiz-feedback.ok { background: #E3F6E8; color: #0F4D27; }
+.quiz-feedback.erro { background: #FBE3DE; color: #6E1F12; }
+.quiz-acoes { margin-top: 14px; display: flex; justify-content: flex-end; }
+.quiz-proxima { min-height: 50px; padding: 12px 22px; border-radius: 12px; border: 0; background: var(--escuro); color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+.quiz-resultado { text-align: center; }
+.quiz-resultado .quiz-pergunta { font-size: 1.9rem; }
+.quiz-resultado p { margin-bottom: 16px; color: var(--texto-claro-2); }
+
+/* ===== FAQ ===== */
+.faq { display: grid; gap: 8px; }
+.faq details { background: #fff; border-radius: 14px; border: 1px solid #E3DCCD; }
+.faq summary { list-style: none; cursor: pointer; min-height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px 16px; font-weight: 700; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; flex: 0 0 auto; font-size: 1.6rem; line-height: 1; font-weight: 500; transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding: 0 16px 16px; color: var(--texto-claro-2); }
+
+/* ===== Final ===== */
+.final { background: radial-gradient(80% 60% at 50% 0%, rgba(244, 183, 64, .14), transparent 70%), var(--escuro); padding: 52px 0; }
+.final h2 { font-size: clamp(2.1rem, 9vw, 3.4rem); }
+.final p { color: #DCEAE6; font-size: 1.05rem; margin-bottom: 22px; }
+.final .micro { margin-top: 10px; margin-bottom: 0; font-size: .9rem; color: var(--texto-2); }
+
+/* ===== Rodapé ===== */
+.rodape { background: #0A2220; color: var(--texto-2); font-size: .85rem; padding: 26px 0 100px; text-align: center; }
+.rodape p + p { margin-top: 6px; }
+.rodape a { color: #fff; text-underline-offset: 3px; display: inline-block; padding: 12px 4px; }
+
+/* ===== Página de texto (política de privacidade) ===== */
+.pagina-texto { padding-top: 0; background: var(--creme); color: var(--escuro); }
+.texto-topo { background: var(--escuro); color: #fff; padding: 20px 0 36px; }
+.voltar { display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 16px 0 10px; border-radius: 99px; border: 1px solid var(--borda); background: var(--card); color: #fff; text-decoration: none; font-weight: 600; font-size: .92rem; margin-bottom: 22px; }
+.voltar svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.texto-topo h1 { font-size: clamp(2.2rem, 9vw, 3.4rem); margin-bottom: 10px; }
+.texto-topo p { color: var(--texto-2); }
+.texto-corpo { padding: 32px 0 48px; }
+.texto-corpo h2 { font-size: clamp(1.5rem, 6vw, 2rem); margin: 34px 0 10px; }
+.texto-corpo h2:first-child { margin-top: 0; }
+.texto-corpo p, .texto-corpo li { color: #233F3B; }
+.texto-corpo p + p { margin-top: 10px; }
+.texto-corpo ul { margin: 10px 0 0; padding-left: 22px; display: grid; gap: 6px; }
+.texto-corpo a { color: var(--escuro); font-weight: 600; text-underline-offset: 3px; }
+.texto-corpo strong { color: var(--escuro); }
+.resumo-privacidade { background: #fff; border-left: 5px solid var(--ambar); border-radius: 14px; padding: 18px 20px; margin-bottom: 8px; }
+.resumo-privacidade ul { margin-top: 8px; }
+.pagina-texto .rodape { padding-bottom: 26px; }
+
+/* ===== Barra fixa no celular ===== */
+.barra-celular {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px var(--lado) calc(10px + env(safe-area-inset-bottom)); background: rgba(10, 34, 32, .97);
+  border-top: 1px solid var(--borda); transform: translateY(110%); transition: transform .3s ease;
+}
+.barra-celular.visivel { transform: none; }
+.barra-preco { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.7rem; color: var(--ambar); }
+.barra-celular .botao { flex: 1; max-width: 240px; min-height: 50px; padding: 12px 18px; }
+
+/* ===== Aparecer ao rolar (só com JavaScript; sem ele, tudo aparece) ===== */
+.js .revelar { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+.js .revelar.visivel { opacity: 1; transform: none; }
+
+/* ===== Telas maiores ===== */
+@media (min-width: 600px) {
+  :root { --lado: 24px; }
+  .so-desktop { display: inline; }
+  .numeros-grade { grid-template-columns: repeat(4, 1fr); }
+  .botao-grande { width: auto; }
+  .botao-gigante { width: auto; min-width: 360px; }
+}
+@media (min-width: 900px) {
+  :root { --lado: 32px; }
+  body { font-size: 1.05rem; }
+  .secao { padding: 64px 0; }
+  .hero { padding: 52px 0 60px; }
+  .hero-grade { grid-template-columns: 1.35fr .65fr; align-items: center; gap: 48px; }
+  .hero-resumo { display: block; }
+  .cards-3 { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .aulas { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .depoimentos { grid-template-columns: repeat(3, 1fr); }
+  .preco-grade { grid-template-columns: 1.1fr .9fr; align-items: center; gap: 28px; }
+  .preco-card { padding: 30px; }
+  .barra-celular { display: none; }
+  .rodape { padding-bottom: 26px; }
+  .final { padding: 72px 0; }
+}
+@media (max-width: 380px) {
+  :root { --lado: 14px; }
+  body { font-size: .97rem; }
+  .barra-topo { font-size: .78rem; }
+  .numero { padding: 12px 10px; }
+  .numero > span { font-size: .8rem; }
+}
+
+/* =====================================================================
+   EFEITOS (só transform e opacity, leves no celular).
+   Todos desligam com "reduzir movimento" no sistema (bloco no fim do arquivo).
+   ===================================================================== */
+
+/* Barra de progresso da leitura, logo abaixo da barra do prazo */
+.progresso-leitura { position: fixed; left: 0; right: 0; top: var(--barra-topo); height: 3px; z-index: 51; background: var(--ambar); transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; }
+
+/* Topo: entra em sequência ao abrir a página */
+@keyframes subir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.hero-texto > *, .hero-resumo { animation: subir .7s cubic-bezier(.2, .7, .2, 1) both; }
+.hero-texto > :nth-child(1) { animation-delay: .05s; }
+.hero-texto > :nth-child(2) { animation-delay: .15s; }
+.hero-texto > :nth-child(3) { animation-delay: .3s; }
+.hero-texto > :nth-child(4) { animation-delay: .45s; }
+.hero-texto > :nth-child(5) { animation-delay: .55s; }
+.hero-resumo { animation-delay: .4s; }
+.hero-resumo li { animation: subir .6s ease both; }
+.hero-resumo li:nth-child(1) { animation-delay: .6s; }
+.hero-resumo li:nth-child(2) { animation-delay: .72s; }
+.hero-resumo li:nth-child(3) { animation-delay: .84s; }
+
+/* Sublinhado âmbar que se desenha embaixo do destaque do título */
+.hero h1 .destaque { background: linear-gradient(var(--ambar), var(--ambar)) 0 100% / 0 4px no-repeat; padding-bottom: 2px; animation: sublinhar .9s .9s cubic-bezier(.6, 0, .2, 1) forwards; }
+@keyframes sublinhar { to { background-size: 100% 4px; } }
+
+/* Luz que passeia devagar no fundo do topo */
+.hero { position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; width: 520px; height: 520px; right: -180px; top: -160px; border-radius: 50%; background: radial-gradient(closest-side, rgba(244, 183, 64, .16), transparent); animation: flutuar 14s ease-in-out infinite alternate; pointer-events: none; }
+.hero > .caixa { position: relative; }
+@keyframes flutuar { to { transform: translate(-120px, 140px) scale(1.15); } }
+
+/* Seta do botão principal "chamando" */
+.botao-grande svg { animation: empurrar 2.4s ease-in-out infinite; }
+@keyframes empurrar { 0%, 60%, 100% { transform: none; } 75% { transform: translateX(5px); } }
+
+/* Brilho que atravessa os botões de compra principais de tempos em tempos */
+.botao-brilho { position: relative; overflow: hidden; isolation: isolate; }
+.botao-brilho::after { content: ''; position: absolute; inset: 0 auto 0 0; width: 45%; z-index: -1; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .55), transparent); transform: translateX(-130%) skewX(-18deg); animation: brilho 4.5s ease-in-out 1.6s infinite; }
+@keyframes brilho { 0% { transform: translateX(-130%) skewX(-18deg); } 25%, 100% { transform: translateX(330%) skewX(-18deg); } }
+
+/* Contagem dos números: largura fixa para o texto não "pular" */
+[data-contar] { font-variant-numeric: tabular-nums; display: inline-block; text-align: left; }
+
+/* Cascata: os itens de uma lista aparecem um depois do outro (atraso definido no script) */
+.js .revelar { transition: opacity .6s ease var(--atraso, 0s), transform .6s cubic-bezier(.2, .7, .2, 1) var(--atraso, 0s); }
+
+/* Cartões sobem um pouco ao passar o mouse (só em quem tem mouse) */
+@media (hover: hover) {
+  .card, .aula, .numero, .argumentos li, .pilha li { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, opacity .6s ease var(--atraso, 0s); }
+  .card:hover, .numero:hover { transform: translateY(-4px); border-color: var(--ambar); box-shadow: 0 18px 30px -18px rgba(0, 0, 0, .6); }
+  .aula:hover, .argumentos li:hover { transform: translateY(-3px); box-shadow: 0 16px 30px -18px rgba(15, 46, 43, .55); }
+  .pilha li:hover { transform: translateX(4px); border-color: var(--verde); }
+  .aula:hover .aula-num { background: var(--ambar); }
+  .aula-num { transition: background .25s ease; }
+}
+
+/* Checks verdes "estalam" quando o item aparece */
+.js .pilha li .check, .js .lista-dor li .icone-x { transform: scale(0); transition: transform .45s cubic-bezier(.3, 1.6, .5, 1) calc(var(--atraso, 0s) + .25s); }
+.js .pilha li.visivel .check, .js .lista-dor li.visivel .icone-x { transform: scale(1); }
+
+/* Preço: o valor das aulas avulsas é riscado na frente da pessoa */
+.ancora s { text-decoration: none; background: linear-gradient(#8B4A3F, #8B4A3F) 0 58% / 0 2.5px no-repeat; transition: background-size .7s cubic-bezier(.6, 0, .2, 1) .6s; }
+.js .preco-card.visivel .ancora s, .preco-card:not(.revelar) .ancora s { background-size: 100% 2.5px; }
+html:not(.js) .ancora s { text-decoration: line-through; }
+.js .preco-card .preco { transform: scale(.85); opacity: 0; transition: transform .6s cubic-bezier(.3, 1.5, .5, 1) .9s, opacity .4s ease .9s; transform-origin: 50% 70%; }
+.js .preco-card.visivel .preco { transform: none; opacity: 1; }
+
+/* Linha do tempo se desenha; a data da prova pulsa */
+.js .anima-linha::before { transform: scaleY(0); transform-origin: top; transition: transform 1.4s cubic-bezier(.5, 0, .2, 1) .2s; }
+.js .anima-linha.visivel::before { transform: none; }
+.linha-tempo li:last-child::before { animation: pulsar 2s ease-out infinite; }
+@keyframes pulsar { 0% { box-shadow: 0 0 0 4px var(--escuro), 0 0 0 4px rgba(232, 85, 61, .55); } 100% { box-shadow: 0 0 0 4px var(--escuro), 0 0 0 16px rgba(232, 85, 61, 0); } }
+
+/* Quiz: resposta certa salta, errada balança */
+.quiz-opcao.certa { animation: saltar .5s cubic-bezier(.3, 1.6, .5, 1); }
+.quiz-opcao.errada { animation: balancar .45s ease; }
+@keyframes saltar { 40% { transform: scale(1.04); } }
+@keyframes balancar { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+.quiz-feedback, .quiz-resultado { animation: subir .4s ease both; }
+
+/* FAQ: a resposta desliza ao abrir */
+.faq details[open] p { animation: subir .35s ease both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+  .js .revelar { opacity: 1; transform: none; }
+  .js .pilha li .check, .js .lista-dor li .icone-x, .js .preco-card .preco { transform: none; opacity: 1; }
+  .js .anima-linha::before { transform: none; }
+  .ancora s { background-size: 100% 2.5px; }
+  .hero h1 .destaque { background-size: 100% 4px; }
+  .progresso-leitura { display: none; }
+}
