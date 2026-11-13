@@ -145,6 +145,7 @@ a { color: inherit; }
 .especialidades { margin: 0 0 18px; padding-left: 20px; display: grid; gap: 4px; }
 .citacao { margin: 0; padding: 16px 18px; border-radius: 12px; background: var(--escuro); border: 1px solid var(--borda); font-size: 1.05rem; font-style: italic; line-height: 1.5; }
 .equipe-demais { border: 1px dashed var(--borda); border-radius: var(--raio); padding: 16px 20px; margin-bottom: 22px; color: #DCEAE6; }
+@media (max-width: 899px) { .centro-celular { display: flex; width: fit-content; margin-inline: auto; } }
 
 /* ===== Depoimentos ===== */
 .depoimentos { display: grid; gap: 12px; }
@@ -160,18 +161,18 @@ a { color: inherit; }
 .total-questoes { font-size: 1.2rem; text-align: center; margin-bottom: 20px; }
 .total-questoes strong { font-family: 'Barlow Condensed', sans-serif; font-size: 2.4rem; color: var(--ambar); display: block; line-height: 1; }
 
-/* ===== Investimento ===== */
-.investimento { background: linear-gradient(180deg, var(--creme) 0%, #FBF3DD 100%); }
-.preco-grade { display: grid; gap: 16px; }
-.preco-card { background: #fff; border: 3px solid var(--escuro); border-radius: 22px; padding: 22px 18px; text-align: center; box-shadow: var(--sombra); }
-.ancora { font-size: 1rem; margin-bottom: 14px; }
-.ancora s { color: #8B4A3F; text-decoration-thickness: 2px; }
-.voce-paga { font-weight: 600; color: var(--texto-claro-2); }
-.preco { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; line-height: .9; color: var(--escuro); font-size: clamp(5rem, 25vw, 7.5rem); margin: 4px 0 8px; }
-.preco .moeda { font-size: .38em; vertical-align: top; margin-right: 4px; position: relative; top: .25em; }
-.parcelas { font-weight: 600; margin-bottom: 16px; }
-.argumentos { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.argumentos li { background: #fff; border-left: 5px solid var(--ambar); border-radius: 12px; padding: 14px 16px; }
+/* ===== Lançamento (o valor ainda não foi divulgado) ===== */
+.lancamento { background: linear-gradient(180deg, var(--creme) 0%, #FBF3DD 100%); }
+.lancamento-card { background: #fff; border: 3px solid var(--escuro); border-radius: 22px; padding: 26px 20px; text-align: center; box-shadow: var(--sombra); }
+.lancamento-selo { display: inline-flex; align-items: center; gap: 8px; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--escuro); background: rgba(244, 183, 64, .25); border: 1px solid rgba(244, 183, 64, .8); padding: 6px 14px; border-radius: 99px; margin-bottom: 14px; }
+.ponto-vivo { width: 9px; height: 9px; border-radius: 50%; background: #C2410C; animation: vivo 1.6s ease-in-out infinite; }
+@keyframes vivo { 50% { opacity: .25; } }
+.lancamento-card h2 { margin-bottom: 12px; }
+.lancamento-texto { color: var(--texto-claro-2); font-size: 1.05rem; max-width: 560px; margin: 0 auto 18px; }
+.lancamento-lista { list-style: none; margin: 0 auto 22px; padding: 0; display: grid; gap: 10px; max-width: 360px; text-align: left; }
+.lancamento-lista li { display: flex; align-items: center; gap: 12px; font-weight: 600; background: var(--creme); border-radius: 12px; padding: 12px 14px; }
+.lancamento-lista .check { background: var(--verde-claro); }
+.lancamento-lista .check::after { border-color: #fff; }
 
 /* ===== Comparativo ===== */
 .comparativo { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .97rem; }
@@ -289,7 +290,7 @@ a { color: inherit; }
   border-top: 1px solid var(--borda); transform: translateY(110%); transition: transform .3s ease;
 }
 .barra-celular.visivel { transform: none; }
-.barra-preco { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.7rem; color: var(--ambar); }
+.barra-texto { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.2rem; line-height: 1.05; color: var(--ambar); text-transform: uppercase; letter-spacing: .02em; }
 .barra-celular .botao { flex: 1; max-width: 240px; min-height: 50px; padding: 12px 18px; }
 
 /* ===== Aparecer ao rolar (só com JavaScript; sem ele, tudo aparece) ===== */
@@ -305,6 +306,7 @@ a { color: inherit; }
   .botao-gigante { width: auto; min-width: 360px; }
 }
 @media (min-width: 900px) {
+  .lancamento-card { padding: 40px; }
   :root { --lado: 32px; }
   body { font-size: 1.05rem; }
   .secao { padding: 64px 0; }
@@ -314,8 +316,6 @@ a { color: inherit; }
   .cards-3 { grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .aulas { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .depoimentos { grid-template-columns: repeat(3, 1fr); }
-  .preco-grade { grid-template-columns: 1.1fr .9fr; align-items: center; gap: 28px; }
-  .preco-card { padding: 30px; }
   .barra-celular { display: none; }
   .rodape { padding-bottom: 26px; }
   .final { padding: 72px 0; }
@@ -389,13 +389,6 @@ a { color: inherit; }
 .js .pilha li .check, .js .lista-dor li .icone-x { transform: scale(0); transition: transform .45s cubic-bezier(.3, 1.6, .5, 1) calc(var(--atraso, 0s) + .25s); }
 .js .pilha li.visivel .check, .js .lista-dor li.visivel .icone-x { transform: scale(1); }
 
-/* Preço: o valor das aulas avulsas é riscado na frente da pessoa */
-.ancora s { text-decoration: none; background: linear-gradient(#8B4A3F, #8B4A3F) 0 58% / 0 2.5px no-repeat; transition: background-size .7s cubic-bezier(.6, 0, .2, 1) .6s; }
-.js .preco-card.visivel .ancora s, .preco-card:not(.revelar) .ancora s { background-size: 100% 2.5px; }
-html:not(.js) .ancora s { text-decoration: line-through; }
-.js .preco-card .preco { transform: scale(.85); opacity: 0; transition: transform .6s cubic-bezier(.3, 1.5, .5, 1) .9s, opacity .4s ease .9s; transform-origin: 50% 70%; }
-.js .preco-card.visivel .preco { transform: none; opacity: 1; }
-
 /* Linha do tempo se desenha; a data da prova pulsa */
 .js .anima-linha::before { transform: scaleY(0); transform-origin: top; transition: transform 1.4s cubic-bezier(.5, 0, .2, 1) .2s; }
 .js .anima-linha.visivel::before { transform: none; }
@@ -416,9 +409,8 @@ html:not(.js) .ancora s { text-decoration: line-through; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
   .js .revelar { opacity: 1; transform: none; }
-  .js .pilha li .check, .js .lista-dor li .icone-x, .js .preco-card .preco { transform: none; opacity: 1; }
+  .js .pilha li .check, .js .lista-dor li .icone-x { transform: none; opacity: 1; }
   .js .anima-linha::before { transform: none; }
-  .ancora s { background-size: 100% 2.5px; }
   .hero h1 .destaque { background-size: 100% 4px; }
   .progresso-leitura { display: none; }
 }

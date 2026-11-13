@@ -3,17 +3,10 @@
    Tudo que estiver entre [COLCHETES] precisa ser preenchido antes de publicar.
    ===================================================================== */
 const CONFIG = {
-  whatsapp: {
-    ddd: '[DDD]',            // ex.: '27'
-    numero: '[NUMERO]',      // ex.: '999999999' (só números)
-    mensagem: 'Oi! Quero garantir minha vaga no Preparatório de Enfermagem para o concurso de Anchieta.'
-  },
-  preco: 495,                // preço do Preparatório Completo, em reais
-  precoAulaAvulsa: 99,       // preço de uma aula avulsa
+  /* Link do grupo do WhatsApp: todos os botões da página levam para ele. */
+  linkGrupo: 'https://chat.whatsapp.com/J3gs56NgzSqK2GQkw09Z9s?s=cl&p=i&mlu=4&ilr=4&iam=2',
   aulas: 6,
   horasPorAula: 6,
-  subsidioTecnico: 4500,     // usado no "cerca de X% de um mês"
-  parcelamento: 'Dinheiro, Pix ou cartão de crédito em até 10x (com juros)',
   formasPagamento: 'Dinheiro, Pix ou cartão de crédito em até 10x (com juros).',
   local: 'O local ainda será definido',
   horarios: 'os horários serão combinados no grupo da turma',
@@ -26,31 +19,12 @@ const CONFIG = {
 
 document.documentElement.classList.add('js');
 
-const reais = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: Number.isInteger(v) ? 0 : 2 });
-
-/* Link do WhatsApp em todos os botões de compra (data-cta). */
-const linkWhatsApp = `https://wa.me/55${CONFIG.whatsapp.ddd}${CONFIG.whatsapp.numero}?text=${encodeURIComponent(CONFIG.whatsapp.mensagem)}`;
-document.querySelectorAll('[data-cta]').forEach((a) => { a.href = linkWhatsApp; });
-
-/* Valores calculados a partir do CONFIG (âncora, economia, preço por hora). */
-const totalAvulso = CONFIG.precoAulaAvulsa * CONFIG.aulas;
-const valores = {
-  preco: reais(CONFIG.preco),
-  precoNumero: CONFIG.preco.toLocaleString('pt-BR'),
-  avulso: reais(CONFIG.precoAulaAvulsa),
-  totalAvulso: reais(totalAvulso),
-  economia: reais(totalAvulso - CONFIG.preco),
-  porHora: reais(Math.round((CONFIG.preco / (CONFIG.aulas * CONFIG.horasPorAula)) * 100) / 100),
-  pctSubsidio: `${Math.round((CONFIG.preco / CONFIG.subsidioTecnico) * 100)}%`
-};
-document.querySelectorAll('[data-valor]').forEach((el) => {
-  const v = valores[el.dataset.valor];
-  if (v !== undefined) el.textContent = v;
-});
+/* Link do grupo em todos os botões (data-cta). */
+const linkGrupo = CONFIG.linkGrupo;
+document.querySelectorAll('[data-cta]').forEach((a) => { a.href = linkGrupo; });
 
 const vagas = Number.isInteger(CONFIG.vagasTurma) && CONFIG.vagasTurma > 0 ? CONFIG.vagasTurma : null;
 const textos = {
-  parcelamento: CONFIG.parcelamento,
   formasPagamento: CONFIG.formasPagamento,
   local: CONFIG.local,
   horarios: CONFIG.horarios,
@@ -242,7 +216,7 @@ function proxima() {
     <div class="quiz-resultado">
       <p class="quiz-pergunta" tabindex="-1">Você acertou ${acertos} de ${PERGUNTAS.length}.</p>
       <p>${r.frase}</p>
-      <a class="botao botao-grande" data-cta="quiz" href="${linkWhatsApp}" target="_blank" rel="noopener">${r.botao}</a>
+      <a class="botao botao-grande" data-cta="quiz" href="${linkGrupo}" target="_blank" rel="noopener">${r.botao}</a>
     </div>`;
   quiz.querySelector('.quiz-pergunta').focus();
 }
