@@ -99,7 +99,7 @@ a { color: inherit; }
 .hero-resumo li { display: flex; align-items: baseline; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--borda); }
 .hero-resumo li:last-child { border-bottom: 0; padding-bottom: 0; }
 .hero-resumo strong { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 2.4rem; line-height: 1; color: var(--ambar); min-width: 128px; white-space: nowrap; }
-.hero-resumo span { color: #DCEAE6; }
+.hero-resumo li > span { color: #DCEAE6; }
 .hero-resumo-equipe { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--borda); font-size: .9rem; color: var(--texto-2); }
 
 /* ===== Números ===== */
@@ -413,4 +413,10 @@ a { color: inherit; }
   .js .anima-linha::before { transform: none; }
   .hero h1 .destaque { background-size: 100% 4px; }
   .progresso-leitura { display: none; }
+}
+
+/* Botões centralizados na tela do computador */
+@media (min-width: 900px) {
+  a.botao[data-cta]:not([data-cta="barra-celular"]) { display: flex; width: fit-content; margin-inline: auto; }
+  .hero-texto .micro { text-align: center; }
 }
