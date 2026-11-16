@@ -10,7 +10,7 @@ const CONFIG = {
   formasPagamento: 'Dinheiro, Pix ou cartão de crédito em até 10x (com juros).',
   local: 'O local ainda será definido',
   horarios: 'os horários serão combinados no grupo da turma',
-  datasAulas: ['05/12', '12/12', '19/12', '26/12', '09/01', '16/01'],
+  inicioAulas: 'As aulas serão iniciadas em dezembro', // troque pela data exata quando for definida
   prova: '2027-02-28T08:00:00-03:00', // prazo real do contador (horário de Brasília)
   vagasTurma: null           // número REAL de vagas na sala, ex.: 30. Deixe null se não houver.
 };
@@ -28,7 +28,7 @@ const textos = {
   formasPagamento: CONFIG.formasPagamento,
   local: CONFIG.local,
   horarios: CONFIG.horarios,
-  datas: CONFIG.datasAulas.slice(0, -1).join(', ') + ' e ' + CONFIG.datasAulas.slice(-1),
+  inicio: CONFIG.inicioAulas,
   vagasCurto: vagas ? `${vagas} vagas na turma` : 'Vagas limitadas à capacidade da sala',
   vagasLongo: vagas ? `${vagas} vagas na turma` : 'Vagas limitadas à capacidade da sala'
 };
