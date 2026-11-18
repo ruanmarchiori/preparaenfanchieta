@@ -6,7 +6,7 @@ const CONFIG = {
   /* Link do grupo do WhatsApp: todos os botões da página levam para ele. */
   linkGrupo: 'https://chat.whatsapp.com/J3gs56NgzSqK2GQkw09Z9s?s=cl&p=i&mlu=4&ilr=4&iam=2',
   aulas: 6,
-  horasPorAula: 6,
+  horasPorAula: 5,
   formasPagamento: 'Dinheiro, Pix ou cartão de crédito em até 10x (com juros).',
   local: 'O local ainda será definido',
   horarios: 'os horários serão combinados no grupo da turma',
