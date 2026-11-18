@@ -11,6 +11,7 @@ const CONFIG = {
   local: 'O local ainda será definido',
   horarios: 'os horários serão combinados no grupo da turma',
   inicioAulas: 'As aulas serão iniciadas em dezembro', // troque pela data exata quando for definida
+  fimInscricoes: '2026-12-14T23:59:59-03:00', // depois disso o aviso de inscrições abertas some sozinho
   prova: '2027-02-28T08:00:00-03:00', // prazo real do contador (horário de Brasília)
   vagasTurma: null           // número REAL de vagas na sala, ex.: 30. Deixe null se não houver.
 };
@@ -37,6 +38,9 @@ document.querySelectorAll('[data-texto]').forEach((el) => {
   if (v !== undefined) el.textContent = v;
 });
 
+/* Aviso de inscrições do concurso: some depois do último dia. */
+if (Date.now() > new Date(CONFIG.fimInscricoes).getTime()) document.getElementById('avisoInscricoes')?.remove();
+
 document.getElementById('ano').textContent = new Date().getFullYear();
 
 /* ===== Contador até a prova (prazo real, nunca reinicia) ===== */
@@ -45,18 +49,19 @@ const contador = document.getElementById('contador');
 function textoContador(agora) {
   const resta = prazo - agora;
   if (resta <= 0) return 'É hoje!';
-  const min = Math.floor(resta / 60000);
+  const min = Math.ceil(resta / 60000);
   const d = Math.floor(min / 1440);
   const h = Math.floor((min % 1440) / 60);
   const m = min % 60;
-  return `${d}d ${String(h).padStart(2, '0')}h ${String(m).padStart(2, '0')}min`;
+  const plural = (n, um, varios) => `${n} ${n === 1 ? um : varios}`;
+  if (d > 0) return h > 0 ? `${plural(d, 'dia', 'dias')} e ${plural(h, 'hora', 'horas')}` : plural(d, 'dia', 'dias');
+  if (h > 0) return m > 0 ? `${plural(h, 'hora', 'horas')} e ${m} min` : plural(h, 'hora', 'horas');
+  return `${m} min`;
 }
 function atualizarContador() {
   contador.textContent = textoContador(Date.now());
   if (Date.now() >= prazo) {
-    const barra = contador.closest('.barra-topo');
-    barra.firstElementChild.innerHTML = 'Prova <strong>hoje</strong>';
-    contador.parentElement.innerHTML = '<strong id="contador">É hoje!</strong>';
+    contador.closest('.barra-topo').innerHTML = '<span>A prova do concurso é <strong>hoje</strong>. Boa prova!</span>';
     return;
   }
   setTimeout(atualizarContador, 60000 - (Date.now() % 60000) + 50);
