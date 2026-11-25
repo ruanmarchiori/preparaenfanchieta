@@ -3,11 +3,16 @@
    Tudo que estiver entre [COLCHETES] precisa ser preenchido antes de publicar.
    ===================================================================== */
 const CONFIG = {
-  /* Link do grupo do WhatsApp: todos os botões da página levam para ele. */
+  /* Link do grupo do WhatsApp: todos os botões levam para ele, menos o da seção do valor. */
   linkGrupo: 'https://chat.whatsapp.com/J3gs56NgzSqK2GQkw09Z9s?s=cl&p=i&mlu=4&ilr=4&iam=2',
+  linkMatricula: 'https://script.google.com/macros/s/AKfycbxgiasctq3Oh_xgySZvMTWe5_PsK639J1LW0L-Saj3h3viDIr4I2dctkKlDgc1qiE6q/exec?pagina=matricula', // só o botão da seção do valor
   aulas: 6,
   horasPorAula: 5,
-  formasPagamento: 'Dinheiro, Pix ou cartão de crédito em até 10x (com juros).',
+  formasPagamento: 'Pix ou dinheiro, à vista, ou cartão de crédito em até 12x (com juros).',
+  preco: 494.90,
+  aVista: 'À vista, no Pix ou em dinheiro',
+  parcelamento: 'Ou no cartão de crédito em até 12x (com juros)',
+  fimLote: '2026-12-06T23:59:59-03:00', // fim do 1º lote: depois disso os avisos do lote somem (confira o preço!)
   local: 'O local ainda será definido',
   horarios: 'os horários serão combinados no grupo da turma',
   inicioAulas: 'As aulas serão iniciadas em dezembro', // troque pela data exata quando for definida
@@ -20,12 +25,19 @@ const CONFIG = {
 
 document.documentElement.classList.add('js');
 
-/* Link do grupo em todos os botões (data-cta). */
+/* Link do grupo em todos os botões (data-cta), menos o da seção do valor, que leva à matrícula. */
 const linkGrupo = CONFIG.linkGrupo;
-document.querySelectorAll('[data-cta]').forEach((a) => { a.href = linkGrupo; });
+document.querySelectorAll('[data-cta]').forEach((a) => { a.href = a.dataset.cta === 'preco' ? CONFIG.linkMatricula : linkGrupo; });
 
 const vagas = Number.isInteger(CONFIG.vagasTurma) && CONFIG.vagasTurma > 0 ? CONFIG.vagasTurma : null;
+const [precoInteiro, precoCentavos] = CONFIG.preco.toFixed(2).split('.');
 const textos = {
+  preco: `R$ ${precoInteiro},${precoCentavos}`,
+  precoInteiro,
+  precoCentavos: ',' + precoCentavos,
+  aVista: CONFIG.aVista,
+  parcelamento: CONFIG.parcelamento,
+  fimLote: new Date(CONFIG.fimLote).toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
   formasPagamento: CONFIG.formasPagamento,
   local: CONFIG.local,
   horarios: CONFIG.horarios,
@@ -40,6 +52,9 @@ document.querySelectorAll('[data-texto]').forEach((el) => {
 
 /* Aviso de inscrições do concurso: some depois do último dia. */
 if (Date.now() > new Date(CONFIG.fimInscricoes).getTime()) document.getElementById('avisoInscricoes')?.remove();
+
+/* Avisos do 1º lote: somem depois do último dia. */
+if (Date.now() > new Date(CONFIG.fimLote).getTime()) document.querySelectorAll('[data-lote]').forEach((el) => el.remove());
 
 document.getElementById('ano').textContent = new Date().getFullYear();
 

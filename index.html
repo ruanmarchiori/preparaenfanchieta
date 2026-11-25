@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=202611181327">
+<link rel="stylesheet" href="styles.css?v=202611251302">
 </head>
 <body>
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -42,6 +42,7 @@
       <div class="hero-texto">
         <p class="selo">Concurso Saúde · Prefeitura de Anchieta/ES · Edital nº 003/2026</p>
         <p class="aviso-inscricoes" id="avisoInscricoes"><span class="ponto-vivo" aria-hidden="true"></span><span><strong>Inscrições do concurso abertas:</strong> encerram em 14/12/2026</span></p>
+        <p class="aviso-inscricoes aviso-lote" data-lote><span class="ponto-vivo" aria-hidden="true"></span><span><strong>Inscrições do curso abertas:</strong> 1º lote promocional até <span data-texto="fimLote">06/12/2026</span></span></p>
         <h1>Do plantão para o dia da prova: estude <span class="destaque">o que mais vale ponto</span>, com quem vive a enfermagem.</h1>
         <p class="sub">Preparatório presencial para <strong>Enfermeiros e Técnicos de Enfermagem</strong>: 6 aulas de 5 horas, focadas nas disciplinas que valem <strong>66 dos 100 pontos</strong> da prova, em que cada questão específica vale <strong>3,5 pontos</strong>.</p>
         <a class="botao botao-grande botao-brilho" data-cta="hero" href="https://chat.whatsapp.com/J3gs56NgzSqK2GQkw09Z9s?s=cl&amp;p=i&amp;mlu=4&amp;ilr=4&amp;iam=2" target="_blank" rel="noopener">
@@ -185,20 +186,18 @@
     </div>
   </section>
 
-  <!-- 9. Lançamento: o valor só será divulgado na data de lançamento -->
-  <section class="secao clara lancamento" id="lancamento" aria-labelledby="t-lancamento">
+  <!-- 9. Valor do curso -->
+  <section class="secao clara lancamento" id="investimento" aria-labelledby="t-preco">
     <div class="caixa estreita">
       <div class="lancamento-card revelar">
-        <p class="lancamento-selo"><span class="ponto-vivo" aria-hidden="true"></span>Em breve</p>
-        <h2 id="t-lancamento">As vagas abrem em uma data de lançamento.</h2>
-        <p class="lancamento-texto">O valor e a data de abertura das vagas serão anunciados no grupo do WhatsApp. Entre agora para ficar por dentro e não perder o lançamento.</p>
-        <ul class="lancamento-lista">
-          <li><span class="check" aria-hidden="true"></span>Data de abertura das vagas</li>
-          <li><span class="check" aria-hidden="true"></span>Valor do curso</li>
-          <li><span class="check" aria-hidden="true"></span>Local e horários das aulas</li>
-        </ul>
-        <a class="botao botao-gigante botao-brilho" data-cta="lancamento" href="https://chat.whatsapp.com/J3gs56NgzSqK2GQkw09Z9s?s=cl&amp;p=i&amp;mlu=4&amp;ilr=4&amp;iam=2" target="_blank" rel="noopener">Quero entrar no grupo</a>
-        <p class="micro micro-escuro">Você será redirecionado para um grupo no WhatsApp.</p>
+        <p class="lancamento-selo" data-lote><span class="ponto-vivo" aria-hidden="true"></span>1º lote promocional</p>
+        <h2 id="t-preco">Quanto custa a sua preparação</h2>
+        <p class="preco"><span class="moeda">R$</span><span data-texto="precoInteiro">494</span><span class="centavos" data-texto="precoCentavos">,90</span></p>
+        <p class="parcelas" data-texto="aVista">À vista, no Pix ou em dinheiro</p>
+        <p class="parcelas-cartao" data-texto="parcelamento">Ou no cartão de crédito em até 12x (com juros)</p>
+        <p class="lancamento-texto" data-lote>Inscrições abertas no 1º lote até <strong data-texto="fimLote">06/12/2026</strong>.</p>
+        <a class="botao botao-gigante botao-brilho" data-cta="preco" href="https://script.google.com/macros/s/AKfycbxgiasctq3Oh_xgySZvMTWe5_PsK639J1LW0L-Saj3h3viDIr4I2dctkKlDgc1qiE6q/exec?pagina=matricula" target="_blank" rel="noopener">Quero me inscrever</a>
+        <p class="micro micro-escuro">Você será redirecionado para a página de matrícula.</p>
       </div>
     </div>
   </section>
@@ -260,8 +259,8 @@
         <details class="revelar"><summary>Onde e quando são as aulas?</summary><p><span data-texto="local">O local ainda será definido</span>. <span data-texto="inicio">As aulas serão iniciadas em dezembro</span>, e <span data-texto="horarios">os horários serão combinados no grupo da turma</span>.</p></details>
         <details class="revelar"><summary>E se eu faltar a uma aula?</summary><p>A aula perdida não é reposta presencialmente.</p></details>
         <details class="revelar"><summary>O curso cobre todas as disciplinas da prova?</summary><p>As 6 aulas cobrem Matemática, Português, Saúde Pública e Conhecimentos Específicos, que somam 66 dos 100 pontos. Noções de Administração Pública, Conhecimentos Locais e Conhecimentos Gerais não fazem parte das aulas e devem ser estudados à parte.</p></details>
-        <details class="revelar"><summary>Quando abrem as vagas e qual é o valor?</summary><p>O valor e a data de abertura das vagas serão anunciados no grupo do WhatsApp, no lançamento do curso.</p></details>
-        <details class="revelar"><summary>Como faço o pagamento?</summary><p data-texto="formasPagamento">Dinheiro, Pix ou cartão de crédito em até 10x (com juros).</p></details>
+        <details class="revelar"><summary>Qual é o valor do curso?</summary><p>O curso custa <span data-texto="preco">R$ 494,90</span> à vista, no Pix ou em dinheiro. No cartão de crédito, em até 12x, há juros.<span data-lote> As inscrições do 1º lote promocional vão até <span data-texto="fimLote">06/12/2026</span>.</span></p></details>
+        <details class="revelar"><summary>Como faço o pagamento?</summary><p data-texto="formasPagamento">Pix ou dinheiro, à vista, ou cartão de crédito em até 12x (com juros).</p></details>
         <details class="revelar"><summary>Posso desistir?</summary><p>Sim. Se você cancelar em até 7 dias após a compra, recebe o seu dinheiro de volta.</p></details>
         <details class="revelar"><summary>O curso é ligado à Prefeitura ou à banca?</summary><p>Não. É um curso preparatório independente.</p></details>
       </div>
@@ -290,10 +289,10 @@
 
 <!-- Barra fixa no celular -->
 <div class="barra-celular" id="barraCelular" aria-hidden="true">
-  <span class="barra-texto">Lançamento<br>em breve</span>
+  <span class="barra-texto barra-preco"><span data-texto="preco">R$ 494,90</span><small>à vista</small></span>
   <a class="botao" data-cta="barra-celular" href="https://chat.whatsapp.com/J3gs56NgzSqK2GQkw09Z9s?s=cl&amp;p=i&amp;mlu=4&amp;ilr=4&amp;iam=2" target="_blank" rel="noopener" tabindex="-1">Entrar no grupo</a>
 </div>
 
-<script src="script.js?v=202611181327"></script>
+<script src="script.js?v=202611251302"></script>
 </body>
 </html>
