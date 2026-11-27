@@ -9,7 +9,9 @@ const CONFIG = {
   aulas: 6,
   horasPorAula: 5,
   formasPagamento: 'Pix ou dinheiro, à vista, ou cartão de crédito em até 12x (com juros).',
-  preco: 494.90,
+  preco: 494.90,            // à vista, no Pix ou no dinheiro
+  parcelas: 12,
+  valorParcela: 49.49,      // no cartão de crédito, com juros
   aVista: 'À vista, no Pix ou em dinheiro',
   parcelamento: 'Ou no cartão de crédito em até 12x (com juros)',
   fimLote: '2026-12-06T23:59:59-03:00', // fim do 1º lote: depois disso os avisos do lote somem (confira o preço!)
@@ -31,7 +33,16 @@ document.querySelectorAll('[data-cta]').forEach((a) => { a.href = a.dataset.cta 
 
 const vagas = Number.isInteger(CONFIG.vagasTurma) && CONFIG.vagasTurma > 0 ? CONFIG.vagasTurma : null;
 const [precoInteiro, precoCentavos] = CONFIG.preco.toFixed(2).split('.');
+const brl = (v) => v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const [parcelaInteiro, parcelaCentavos] = CONFIG.valorParcela.toFixed(2).split('.');
+const totalCartao = brl(Math.round(CONFIG.parcelas * CONFIG.valorParcela * 100) / 100);
 const textos = {
+  parcelasVezes: `${CONFIG.parcelas}x de`,
+  parcelaInteiro,
+  parcelaCentavos: ',' + parcelaCentavos,
+  parcelamentoCurto: `${CONFIG.parcelas}x de R$\u00a0${brl(CONFIG.valorParcela)}`,
+  totalCartao: `No cartão de crédito, total de R$\u00a0${totalCartao} (com juros)`,
+  totalCurto: `total de R$\u00a0${totalCartao}, com juros`,
   preco: `R$ ${precoInteiro},${precoCentavos}`,
   precoInteiro,
   precoCentavos: ',' + precoCentavos,

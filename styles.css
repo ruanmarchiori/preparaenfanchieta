@@ -171,6 +171,7 @@ a { color: inherit; }
 .lancamento-texto { color: var(--texto-claro-2); font-size: 1.05rem; max-width: 560px; margin: 0 auto 18px; }
 .preco { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; line-height: .95; color: var(--escuro); font-size: clamp(4.6rem, 22vw, 7.5rem); margin: 4px 0 10px; white-space: nowrap; animation: pulsar-preco 2.2s ease-in-out infinite; }
 .preco .moeda { font-size: .38em; vertical-align: top; margin-right: 6px; position: relative; top: .25em; }
+.preco .vezes { display: block; font-size: .3em; line-height: 1.1; letter-spacing: .02em; color: var(--texto-claro-2); margin-bottom: 2px; }
 .preco .centavos { font-size: .45em; vertical-align: top; position: relative; top: .18em; }
 @keyframes pulsar-preco { 50% { transform: scale(1.05); } }
 .parcelas { font-weight: 700; margin-bottom: 2px; }
@@ -433,6 +434,6 @@ a { color: inherit; }
 .aviso-lote { background: rgba(244, 183, 64, .12); border-color: rgba(244, 183, 64, .55); }
 .aviso-lote strong { color: #FFD27A; }
 .aviso-inscricoes + .aviso-lote { margin-top: -6px; }
-.barra-texto.barra-preco { font-size: 1.6rem; white-space: nowrap; }
+.barra-texto.barra-preco { font-size: 1.45rem; white-space: nowrap; }
 .barra-preco small { display: block; font: 600 .7rem/1.2 'Inter', sans-serif; color: var(--texto-2); text-transform: none; }
 .hero-texto > :nth-child(7) { animation-delay: .72s; }
