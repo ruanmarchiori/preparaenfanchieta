@@ -174,7 +174,7 @@ a { color: inherit; }
 .preco .vezes { display: block; font-size: .3em; line-height: 1.1; letter-spacing: .02em; color: var(--texto-claro-2); margin-bottom: 2px; }
 .preco .centavos { font-size: .45em; vertical-align: top; position: relative; top: .18em; }
 @keyframes pulsar-preco { 50% { transform: scale(1.05); } }
-.parcelas { font-weight: 700; margin-bottom: 2px; }
+.parcelas { font-weight: 700; margin-bottom: 14px; }
 .parcelas-cartao { color: var(--texto-claro-2); margin-bottom: 14px; }
 
 /* ===== Comparativo ===== */
